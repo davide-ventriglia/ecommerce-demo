@@ -18,4 +18,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build ./api-gateway/Dockerfile --tag davideventrigliaswd/ecommerce-demo-api-gateway:$(date +%s)
+      run: docker build api-gateway/Dockerfile --tag davideventrigliaswd/ecommerce-demo-api-gateway:$(date +%s)
