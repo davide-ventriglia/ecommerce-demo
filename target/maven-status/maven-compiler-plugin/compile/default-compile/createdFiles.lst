@@ -1,7 +1,0 @@
-it/ecommerce/common/exception/CustomEntityNotFoundException.class
-it/ecommerce/common/exception/CustomExceptionHandler.class
-it/ecommerce/common/exception/WrongDataException.class
-it/ecommerce/common/proxy/ProductMicroserviceProxy.class
-it/ecommerce/common/bean/ProductDTO.class
-it/ecommerce/common/exception/CustomEntityAlreadyExistsException.class
-it/ecommerce/common/exception/ExceptionResponse.class
