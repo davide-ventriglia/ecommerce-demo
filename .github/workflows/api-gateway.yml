@@ -46,6 +46,7 @@ jobs:
         # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
     - run: |
+        cd ./api-gateway
         mvn -B package --file pom.xml
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
