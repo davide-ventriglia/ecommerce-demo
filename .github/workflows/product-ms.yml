@@ -9,11 +9,11 @@ env:
 on:
   push:
     paths:
-      - '$MICROSERVICE_NAME/**'
+      - 'product-microservice/**'
     branches: [ "main" ]
   pull_request:
     paths:
-      - '$MICROSERVICE_NAME/**'
+      - 'product-microservice/**'
     branches: [ "main" ]
   workflow_dispatch:
 
