@@ -4,7 +4,6 @@ env:
   MICROSERVICE_NAME: product-microservice
   REPO_NAME: ${{ github.event.repository.name }}
   DOCKER_OWNER_NAME: davideventrigliaswd
-  DOCKER_IMAGE_NAME: ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}
 
 on:
   push:
@@ -74,5 +73,5 @@ jobs:
         cd ./${{ env.MICROSERVICE_NAME }}
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker build . --tag ${{ env.DOCKER_IMAGE_NAME }}:$TAG
-        docker push ${{ env.DOCKER_IMAGE_NAME }}:$TAG
+        docker build . --tag ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG
+        docker push ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG
