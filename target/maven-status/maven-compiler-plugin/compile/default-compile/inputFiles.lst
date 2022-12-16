@@ -1,0 +1,7 @@
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/exception/CustomExceptionHandler.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/proxy/ProductMicroserviceProxy.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/exception/ExceptionResponse.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/bean/ProductDTO.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/exception/CustomEntityNotFoundException.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/exception/WrongDataException.java
+/Users/davideventriglia/Documents/code-repos/ecommerce-demo/common-resources/src/main/java/it/ecommerce/common/exception/CustomEntityAlreadyExistsException.java
