@@ -118,6 +118,14 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		<repository>
+			<id>ecommerce-demo-mvn-repo</id>
+			<url>https://github.com/davide-ventriglia/ecommerce-demo/raw/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
