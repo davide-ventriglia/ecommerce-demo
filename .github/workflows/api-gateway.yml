@@ -8,6 +8,7 @@ on:
     paths:
       - 'api-gateway/**'
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   analyze:
