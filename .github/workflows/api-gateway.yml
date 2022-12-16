@@ -28,7 +28,8 @@ jobs:
     - name: Build with Maven & Docker build
       run: |
         cd ./api-gateway
+        export DT=$(date +%s)
         mvn -B package --file pom.xml
-        docker build . --tag davideventrigliaswd/ecommerce-demo-api-gateway:$(date +%s)
-        docker push davideventrigliaswd/ecommerce-demo-api-gateway:$(date +%s)
+        docker build . --tag davideventrigliaswd/ecommerce-demo-api-gateway:$DT
+        docker push davideventrigliaswd/ecommerce-demo-api-gateway:$DT
         
