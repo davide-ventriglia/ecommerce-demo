@@ -1,21 +1,21 @@
 name: Product Microservice CI
 
-on:
-  push:
-    paths:
-      - 'product-microservice/**'
-    branches: [ "main" ]
-  pull_request:
-    paths:
-      - 'product-microservice/**'
-    branches: [ "main" ]
-  workflow_dispatch:
-
 env:
   MICROSERVICE_NAME: product-microservice
   REPO_NAME: ${{ github.event.repository.name }}
   DOCKER_OWNER_NAME: davideventrigliaswd
-  DOCKER_IMAGE_NAME: $DOCKER_HUB_OWNER_NAME/$REPO_NAME-$MICROSERVICE_NAME
+  DOCKER_IMAGE_NAME: ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}
+
+on:
+  push:
+    paths:
+      - '${{ env.MICROSERVICE_NAME }}/**'
+    branches: [ "main" ]
+  pull_request:
+    paths:
+      - '${{ env.MICROSERVICE_NAME }}/**'
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -45,7 +45,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - run: |
-        cd ./$MICROSERVICE_NAME
+        cd ./${{ env.MICROSERVICE_NAME }}
         mvn -B package --file pom.xml
     # Code Analysis
     - name: Perform CodeQL Analysis
@@ -71,8 +71,8 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build with Maven & Docker build
       run: |
-        cd ./$MICROSERVICE_NAME
+        cd ./${{ env.MICROSERVICE_NAME }}
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker build . --tag $DOCKER_IMAGE_NAME:$TAG
-        docker push $DOCKER_IMAGE_NAME:$TAG
+        docker build . --tag ${{ env.DOCKER_IMAGE_NAME }}:$TAG
+        docker push ${{ env.DOCKER_IMAGE_NAME }}:$TAG
