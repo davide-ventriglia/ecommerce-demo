@@ -11,5 +11,5 @@ import it.ecommerce.product.entity.Draft;
 public interface DraftProductRepository extends MongoRepository<Draft, String> {
 
 	Optional<Draft> findByTitle(String title);
-	
+
 }

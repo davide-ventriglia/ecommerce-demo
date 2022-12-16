@@ -29,16 +29,16 @@ class ProductControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@MockBean
 	ProductServiceImpl productService;
-	
+
 	@Test
 	void testGetCatalog() throws Exception {
 		ProductDTO p1 = new ProductDTO("first", 25.99f, null);
 		ProductDTO p2 = new ProductDTO("second", 50.99f, null);
 		List<ProductDTO> products = List.of(p1, p2);
-		
+
 		Mockito.when(productService.getCatalog()).thenReturn(products);
 
 		mockMvc.perform(get("/product"))
@@ -53,10 +53,10 @@ class ProductControllerTest {
 		HashMap<String, Object> details = new HashMap<>();
 		details.put("prop1", "value1");
 		details.put("prop2", "value2");
-		ProductDTO p1 = new ProductDTO("first", 25.99f, null);
+		ProductDTO p1 = new ProductDTO("first", 25.99f, details);
 
 		Mockito.when(productService.getProductByTitle("first")).thenReturn(p1);
-		
+
 		mockMvc.perform(get("/product/search/first"))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("title", is("first")))
@@ -70,8 +70,8 @@ class ProductControllerTest {
 		HashMap<String, Object> details = new HashMap<>();
 		details.put("prop1", "value1");
 		details.put("prop2", "value2");
-		ProductDTO p1 = new ProductDTO("first", 25.99f, null);
-		
+		ProductDTO p1 = new ProductDTO("first", 25.99f, details);
+
 		Mockito.when(productService.addToCatalog(any(ProductDTO.class))).thenReturn(p1);
 
 		mockMvc.perform(post("/product/add")

@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import it.ecommerce.common.exception.CustomEntityNotFoundException;
 import it.ecommerce.product.entity.Draft;
 import it.ecommerce.product.entity.Product;
 import it.ecommerce.product.model.DraftDTO;
@@ -13,6 +12,7 @@ import it.ecommerce.product.model.ProductDTO;
 import it.ecommerce.product.repository.DraftProductRepository;
 import it.ecommerce.product.repository.ProductRepository;
 import it.ecommerce.product.service.DraftProductService;
+import it.ecommerce.common.exception.CustomEntityNotFoundException;
 
 @Service
 public class DraftProductServiceImpl implements DraftProductService {
@@ -46,7 +46,7 @@ public class DraftProductServiceImpl implements DraftProductService {
 
 		Optional<Draft> d = draftProductRepository.findByTitle(title);
 		Draft draft = new Draft();
-		
+
 		if(!d.isPresent()) {
 			draft.setId(p.get().getId());
 			draft.setTitle(p.get().getTitle());

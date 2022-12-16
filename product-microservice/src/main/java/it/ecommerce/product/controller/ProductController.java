@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.ecommerce.common.exception.CustomEntityNotFoundException;
 import it.ecommerce.product.model.ProductDTO;
 import it.ecommerce.product.service.ProductService;
+import it.ecommerce.common.exception.CustomEntityNotFoundException;
 
 @RestController
 @RequestMapping("/product")

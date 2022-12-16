@@ -16,7 +16,7 @@ public class ProductDTO {
 
 	@JsonProperty(value = "title")
 	private String title;
-	
+
 	@JsonProperty(value = "price")
 	private float price;
 

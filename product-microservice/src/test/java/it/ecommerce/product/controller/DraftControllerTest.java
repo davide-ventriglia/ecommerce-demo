@@ -24,15 +24,15 @@ import it.ecommerce.product.service.impl.DraftProductServiceImpl;
 
 @WebMvcTest(DraftController.class)
 class DraftControllerTest {
-	
+
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@MockBean
 	DraftProductServiceImpl draftProductService;
-	
-	private ModelMapper modelMapper;
-	
+
+	private ModelMapper modelMapper = new ModelMapper();;
+
 	@Test
 	void testGetDraft() throws Exception {
 		HashMap<String, Object> details = new HashMap<>();
@@ -41,7 +41,7 @@ class DraftControllerTest {
 		DraftDTO d1 = new DraftDTO("first", 25.99f, details);
 
 		Mockito.when(draftProductService.getProductDraft("first")).thenReturn(d1);
-		
+
 		mockMvc.perform(get("/draft/search/first"))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("title", is("first")))
@@ -57,7 +57,7 @@ class DraftControllerTest {
 		DraftDTO d1 = new DraftDTO("first", 25.99f, details);
 
 		Mockito.when(draftProductService.createOrUpdateDraft(any(String.class),any(DraftDTO.class))).thenReturn(d1);
-		
+
 		mockMvc.perform(post("/draft/edit/first")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"test\":\"test\"}"))
@@ -76,10 +76,10 @@ class DraftControllerTest {
 		ProductDTO p1Dto = modelMapper.map(d1, ProductDTO.class);
 
 		Mockito.when(draftProductService.publishDraft("first")).thenReturn(p1Dto);
-		
+
 		mockMvc.perform(post("/draft/publish/first")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content("{\"test\":\"test\"}"))		
+				.content("{\"test\":\"test\"}"))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("title", is("first")))
 		.andExpect(jsonPath("details.prop1", is("value1")))

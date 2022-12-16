@@ -22,7 +22,7 @@ public class Product implements Serializable {
 	private String id;
 
 	private String title;
-	
+
 	private float price;
 
 	private HashMap<String, Object> details;

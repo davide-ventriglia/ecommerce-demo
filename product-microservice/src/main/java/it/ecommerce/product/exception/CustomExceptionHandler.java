@@ -16,6 +16,8 @@ import it.ecommerce.common.exception.CustomEntityNotFoundException;
 import it.ecommerce.common.exception.ExceptionResponse;
 import it.ecommerce.common.exception.WrongDataException;
 
+
+
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
