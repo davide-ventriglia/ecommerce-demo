@@ -1,11 +1,5 @@
 name: Product Microservice CI
 
-env:
-  MICROSERVICE_NAME: product-microservice
-  REPO_NAME: ${{ github.event.repository.name }}
-  DOCKER_OWNER_NAME: davideventrigliaswd
-  DOCKER_IMAGE_NAME: $DOCKER_HUB_OWNER_NAME/$REPO_NAME-$MICROSERVICE_NAME
-
 on:
   push:
     paths:
@@ -16,6 +10,12 @@ on:
       - 'product-microservice/**'
     branches: [ "main" ]
   workflow_dispatch:
+
+env:
+  MICROSERVICE_NAME: product-microservice
+  REPO_NAME: ${{ github.event.repository.name }}
+  DOCKER_OWNER_NAME: davideventrigliaswd
+  DOCKER_IMAGE_NAME: $DOCKER_HUB_OWNER_NAME/$REPO_NAME-$MICROSERVICE_NAME
 
 jobs:
   analyze:
