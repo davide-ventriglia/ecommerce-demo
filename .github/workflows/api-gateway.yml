@@ -1,4 +1,4 @@
-name: Api Gateway CICD
+name: Api Gateway CI
 on:
   push:
     paths:
