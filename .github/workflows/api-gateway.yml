@@ -35,5 +35,5 @@ jobs:
         cd ./api-gateway
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker buildx build --platform linux/arm64/v8,linux/amd64 --tag davideventrigliaswd/ecommerce-demo-api-gateway:$TAG .
-        docker push davideventrigliaswd/ecommerce-demo-api-gateway:$TAG
+        docker buildx build --platform linux/arm64/v8,linux/amd64 --tag davideventrigliaswd/ecommerce-demo-api-gateway:$TAG . --push
+      #  docker push davideventrigliaswd/ecommerce-demo-api-gateway:$TAG
