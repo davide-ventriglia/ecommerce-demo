@@ -1,4 +1,10 @@
 name: Api Gateway CI
+
+env:
+  MICROSERVICE_NAME: api-gateway
+  REPO_NAME: ${{ github.event.repository.name }}
+  DOCKER_OWNER_NAME: davideventrigliaswd
+
 on:
   push:
     paths:
@@ -32,8 +38,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build with Maven & Docker build
       run: |
-        cd ./api-gateway
+        cd ./${{ env.MICROSERVICE_NAME }}
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker buildx build --platform linux/arm64/v8,linux/amd64 --tag davideventrigliaswd/ecommerce-demo-api-gateway:$TAG . --push
-      #  docker push davideventrigliaswd/ecommerce-demo-api-gateway:$TAG
+        docker buildx build --platform linux/arm64/v8,linux/amd64 --tag ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG . --push
