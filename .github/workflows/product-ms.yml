@@ -27,6 +27,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -37,5 +41,4 @@ jobs:
         cd ./${{ env.MICROSERVICE_NAME }}
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker build . --tag ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG
-        docker push ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG
+        docker buildx build --platform linux/arm64/v8,linux/amd64 --tag ${{ env.DOCKER_OWNER_NAME }}/${{ env.REPO_NAME }}-${{ env.MICROSERVICE_NAME }}:$TAG . --push
