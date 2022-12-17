@@ -1,12 +1,12 @@
-name: Api Gateway CI
+name: Naming Server CI
 on:
   push:
     paths:
-      - 'api-gateway/**'
+      - 'naming-server/**'
     branches: [ "main" ]
   pull_request:
     paths:
-      - 'api-gateway/**'
+      - 'naming-server/**'
     branches: [ "main" ]
   workflow_dispatch:
 
@@ -28,8 +28,8 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build with Maven & Docker build
       run: |
-        cd ./api-gateway
+        cd ./naming-server
         mvn -B package --file pom.xml
         TAG="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-        docker build . --tag davideventrigliaswd/ecommerce-demo-api-gateway:$TAG
-        docker push davideventrigliaswd/ecommerce-demo-api-gateway:$TAG
+        docker build . --tag davideventrigliaswd/ecommerce-demo-naming-server:$TAG
+        docker push davideventrigliaswd/ecommerce-demo-naming-server:$TAG
